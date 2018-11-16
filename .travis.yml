@@ -6,7 +6,7 @@ install:
   - mvn -N io.takari:maven:wrapper
   - ./mvnw install
 
-addons:
+addons: 
    sonarcloud:
        organization: "sweihmws2018-19"
 
