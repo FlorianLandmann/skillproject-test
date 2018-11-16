@@ -27,6 +27,7 @@ import static com.amazon.ask.request.Predicates.requestType;
 public class LaunchRequestHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
+
         return input.matches(requestType(LaunchRequest.class));
     }
 
