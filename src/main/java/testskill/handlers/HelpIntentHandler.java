@@ -16,6 +16,7 @@ package main.java.testskill.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import main.java.testskill.SpeechStrings;
 
 import java.util.Optional;
 
@@ -32,7 +33,7 @@ public class HelpIntentHandler implements RequestHandler {
         String speechText = "Du kannst mir Deine Lieblingsfarbe sagen. Sage zum Beispiel, meine Lieblingsfarbe ist rot.";
         String repromptText = "Bitte sage mir Deine Lieblingsfarbe.";
         return input.getResponseBuilder()
-                .withSimpleCard("ColorSession", speechText)
+                .withSimpleCard(SpeechStrings.TEST_SKILL_NAME, speechText)
                 .withSpeech(speechText)
                 .withReprompt(repromptText)
                 .withShouldEndSession(false)

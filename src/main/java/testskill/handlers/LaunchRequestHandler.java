@@ -34,7 +34,7 @@ public class LaunchRequestHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
-                .withSimpleCard(SpeechStrings.TestSkillName, SpeechStrings.WELCOME)
+                .withSimpleCard(SpeechStrings.TEST_SKILL_NAME, SpeechStrings.WELCOME)
                 .withSpeech(SpeechStrings.WELCOME)
                 .withReprompt(SpeechStrings.WELCOME_REPROMPT)
                 .build();

@@ -19,8 +19,6 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import main.java.testskill.SpeechStrings;
 
-import main.java.testskill.SpeechStrings;
-
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -35,7 +33,7 @@ public class CancelandStopIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
                 .withSpeech(SpeechStrings.STOP)
-                .withSimpleCard(SpeechStrings.TestSkillName, SpeechStrings.STOP)
+                .withSimpleCard(SpeechStrings.TEST_SKILL_NAME, SpeechStrings.STOP)
                 .build();
     }
 }

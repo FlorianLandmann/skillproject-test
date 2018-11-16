@@ -3,6 +3,7 @@ package main.java.testskill.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import main.java.testskill.SpeechStrings;
 
 import java.util.Optional;
 
@@ -23,7 +24,7 @@ public class FallbackIntentHandler implements RequestHandler {
         String speechText = "Tut mir leid, das weiss ich nicht. Sage einfach Hilfe.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("ColorSession", speechText)
+                .withSimpleCard(SpeechStrings.TEST_SKILL_NAME, speechText)
                 .withReprompt(speechText)
                 .build();
     }

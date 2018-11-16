@@ -21,6 +21,7 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.response.ResponseBuilder;
+import main.java.testskill.SpeechStrings;
 
 import java.util.Collections;
 import java.util.Map;
@@ -71,7 +72,7 @@ public class MyColorIsIntentHandler implements RequestHandler {
 
         ResponseBuilder responseBuilder = input.getResponseBuilder();
 
-        responseBuilder.withSimpleCard("ColorSession", speechText)
+        responseBuilder.withSimpleCard(SpeechStrings.TEST_SKILL_NAME, speechText)
                 .withSpeech(speechText)
                 .withShouldEndSession(false);
 
