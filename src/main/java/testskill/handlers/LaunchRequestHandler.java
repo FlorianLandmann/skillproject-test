@@ -11,27 +11,31 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.colorpicker.handlers;
+package main.java.testskill.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
+import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
+
+import main.java.testskill.SpeechStrings;
 
 import java.util.Optional;
 
-import static com.amazon.ask.request.Predicates.intentName;
+import static com.amazon.ask.request.Predicates.requestType;
 
-public class CancelandStopIntentHandler implements RequestHandler {
+public class LaunchRequestHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.StopIntent").or(intentName("AMAZON.CancelIntent")));
+        return input.matches(requestType(LaunchRequest.class));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
-                .withSpeech("Auf Wiedersehen")
-                .withSimpleCard("ColorSession", "Auf Wiedersehen")
+                .withSimpleCard(SpeechStrings.TestSkillName, SpeechStrings.WELCOME)
+                .withSpeech(SpeechStrings.WELCOME)
+                .withReprompt(SpeechStrings.WELCOME_REPROMPT)
                 .build();
     }
 }
