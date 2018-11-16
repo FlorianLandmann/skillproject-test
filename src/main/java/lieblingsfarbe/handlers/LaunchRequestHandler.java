@@ -43,7 +43,7 @@ public class LaunchRequestHandler implements RequestHandler {
         logger.info("LaunchRequestHandler\n");
         logger.error("LaunchRequestHandler\n");
         return input.getResponseBuilder()
-                .withSimpleCard(PhrasesAndConstants.CardTitle, PhrasesAndConstants.WELCOME)
+                .withSimpleCard(PhrasesAndConstants.CARD_TITLE, PhrasesAndConstants.WELCOME)
                 .withSpeech(PhrasesAndConstants.WELCOME)
                 .withReprompt(PhrasesAndConstants.WELCOME_REPROMT)
                 .build();

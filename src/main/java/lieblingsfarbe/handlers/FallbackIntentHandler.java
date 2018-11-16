@@ -23,7 +23,7 @@ public class FallbackIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
                 .withSpeech(PhrasesAndConstants.FALLBACK)
-                .withSimpleCard(PhrasesAndConstants.CardTitle, PhrasesAndConstants.FALLBACK)
+                .withSimpleCard(PhrasesAndConstants.CARD_TITLE, PhrasesAndConstants.FALLBACK)
                 .withReprompt(PhrasesAndConstants.FALLBACK)
                 .build();
     }

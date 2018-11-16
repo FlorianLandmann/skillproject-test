@@ -1,7 +1,12 @@
 package main.java.lieblingsfarbe;
 
 public class PhrasesAndConstants {
-    public static final String CardTitle = "Lieblingsfarbe";
+
+    private PhrasesAndConstants() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    public static final String CARD_TITLE = "Lieblingsfarbe";
     public static final String WELCOME = "Hallo. Ich lerne Deine Lieblingsfarbe. Bitte sage mir zum Beispiel: Meine Lieblingsfarbe ist rot.";
     public static final String WELCOME_REPROMT = "Please guess a number between 0 and 100.";
     public static final String HELP = "Du kannst mir Deine Lieblingsfarbe sagen. Sage zum Beispiel, meine Lieblingsfarbe ist gelb.";

@@ -17,8 +17,6 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import main.java.lieblingsfarbe.PhrasesAndConstants;
-
-import java.lang.ref.PhantomReference;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -32,7 +30,7 @@ public class HelpIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
-                .withSimpleCard(PhrasesAndConstants.CardTitle, PhrasesAndConstants.HELP)
+                .withSimpleCard(PhrasesAndConstants.CARD_TITLE, PhrasesAndConstants.HELP)
                 .withSpeech(PhrasesAndConstants.HELP)
                 .withReprompt(PhrasesAndConstants.HELP_REPROMPT)
                 .withShouldEndSession(false)

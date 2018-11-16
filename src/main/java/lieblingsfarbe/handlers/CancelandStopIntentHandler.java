@@ -32,7 +32,7 @@ public class CancelandStopIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
                 .withSpeech(PhrasesAndConstants.CANCEL_AND_STOP)
-                .withSimpleCard(PhrasesAndConstants.CardTitle, PhrasesAndConstants.CANCEL_AND_STOP)
+                .withSimpleCard(PhrasesAndConstants.CARD_TITLE, PhrasesAndConstants.CANCEL_AND_STOP)
                 .build();
     }
 }
