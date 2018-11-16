@@ -11,18 +11,18 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.colorpicker;
+package main.java.lieblingsfarbe;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import main.java.colorpicker.handlers.FallbackIntentHandler;
-import main.java.colorpicker.handlers.HelpIntentHandler;
-import main.java.colorpicker.handlers.LaunchRequestHandler;
-import main.java.colorpicker.handlers.SessionEndedRequestHandler;
-import main.java.colorpicker.handlers.WhatsMyColorIntentHandler;
-import main.java.colorpicker.handlers.CancelandStopIntentHandler;
-import main.java.colorpicker.handlers.MyColorIsIntentHandler;
+import main.java.lieblingsfarbe.handlers.FallbackIntentHandler;
+import main.java.lieblingsfarbe.handlers.HelpIntentHandler;
+import main.java.lieblingsfarbe.handlers.LaunchRequestHandler;
+import main.java.lieblingsfarbe.handlers.SessionEndedRequestHandler;
+import main.java.lieblingsfarbe.handlers.WhatsMyColorIntentHandler;
+import main.java.lieblingsfarbe.handlers.CancelandStopIntentHandler;
+import main.java.lieblingsfarbe.handlers.MyColorIsIntentHandler;
 
 public class ColorPickerStreamHandler extends SkillStreamHandler {
 

@@ -11,26 +11,41 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.colorpicker.handlers;
+package main.java.lieblingsfarbe.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
+import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
-import com.amazon.ask.model.SessionEndedRequest;
+
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import java.util.Optional;
+import main.java.lieblingsfarbe.PhrasesAndConstants;
 
 import static com.amazon.ask.request.Predicates.requestType;
 
-public class SessionEndedRequestHandler implements RequestHandler {
+public class LaunchRequestHandler implements RequestHandler {
+
+    static final Logger logger = LogManager.getLogger(LaunchRequestHandler.class);
+
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(requestType(SessionEndedRequest.class));
+
+        return input.matches(requestType(LaunchRequest.class));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        // any cleanup logic goes here
-        return input.getResponseBuilder().build();
+        logger.info("LaunchRequestHandler\n");
+        logger.error("LaunchRequestHandler\n");
+        return input.getResponseBuilder()
+                .withSimpleCard(PhrasesAndConstants.CardTitle, PhrasesAndConstants.WELCOME)
+                .withSpeech(PhrasesAndConstants.WELCOME)
+                .withReprompt(PhrasesAndConstants.WELCOME_REPROMT)
+                .build();
     }
 }
