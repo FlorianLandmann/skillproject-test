@@ -15,20 +15,17 @@ package main.java.lieblingsfarbe.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Intent;
-import com.amazon.ask.model.IntentRequest;
-import com.amazon.ask.model.Request;
-import com.amazon.ask.model.Response;
-import com.amazon.ask.model.Slot;
+import com.amazon.ask.model.*;
 import com.amazon.ask.response.ResponseBuilder;
+import main.java.lieblingsfarbe.PhrasesAndConstants;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
-import static main.java.lieblingsfarbe.handlers.WhatsMyColorIntentHandler.COLOR_KEY;
-import static main.java.lieblingsfarbe.handlers.WhatsMyColorIntentHandler.COLOR_SLOT;
+
 import static com.amazon.ask.request.Predicates.intentName;
+import static com.amazon.ask.request.Predicates.viewportProfile;
 
 public class MyColorIsIntentHandler implements RequestHandler {
     @Override
@@ -44,41 +41,32 @@ public class MyColorIsIntentHandler implements RequestHandler {
         Map<String, Slot> slots = intent.getSlots();
 
         // Get the color slot from the list of slots.
-        Slot favoriteColorSlot = slots.get(COLOR_SLOT);
-
-        String speechText;
-        String repromptText;
-        boolean isAskResponse = false;
-
-        // Check for favorite color and create output to user.
-        if (favoriteColorSlot != null) {
-            // Store the user's favorite color in the Session and create response.
-            String favoriteColor = favoriteColorSlot.getValue();
-            input.getAttributesManager().setSessionAttributes(Collections.singletonMap(COLOR_KEY, favoriteColor));
-
-            speechText =
-                    String.format("Deine Lieblingsfarbe ist %s. Du kannst mich jetzt nach Deiner Lieblingsfarbe fragen. "
-                            + "Frage einfach: was ist meine Lieblingsfarbe?", favoriteColor);
-            repromptText =
-                    "Frage nach meiner Lieblingsfarbe.";
-
-        } else {
-            // Render an error since we don't know what the users favorite color is.
-            speechText = "Ich kenne Deine Lieblingsfarbe nicht. Bitte versuche es noch einmal.";
-            repromptText =
-                    "Ich weiss nicht welches Deine Lieblingsfarbe ist. Sag mir Deine Lieblingsfarbe. Sage zum Beispiel: ich mag blau.";
-            isAskResponse = true;
-        }
+        Slot favoriteColorSlot = slots.get(PhrasesAndConstants.COLOR_SLOT);
 
         ResponseBuilder responseBuilder = input.getResponseBuilder();
 
-        responseBuilder.withSimpleCard("ColorSession", speechText)
-                .withSpeech(speechText)
-                .withShouldEndSession(false);
+        String speechText;
 
-        if (isAskResponse) {
-            responseBuilder.withShouldEndSession(false)
-                    .withReprompt(repromptText);
+        // Check for favorite color and create output to user.
+        //if (favoriteColorSlot != null) {
+        //System.out.println(favoriteColorSlot.toString());
+        if (favoriteColorSlot.getValue() != null && favoriteColorSlot.getResolutions().toString().contains("ER_SUCCESS_MATCH")) {
+            // Store the user's favorite color in the Session and create response.
+            String favoriteColor = favoriteColorSlot.getValue();
+            input.getAttributesManager().setSessionAttributes(Collections.singletonMap(PhrasesAndConstants.COLOR_KEY, favoriteColor));
+
+            speechText =
+                    String.format("%s %s. %s", PhrasesAndConstants.LIEBLINGSFARBE_IS, favoriteColor, PhrasesAndConstants.WHAT_IS_LIEBLINGSFARBE);
+            responseBuilder.withSimpleCard(PhrasesAndConstants.CARD_TITLE, speechText)
+                    .withSpeech(speechText)
+                    .withShouldEndSession(false);
+
+        } else {
+            // Render an error since we don't know what the users favorite color is.
+            responseBuilder.withSimpleCard(PhrasesAndConstants.CARD_TITLE, PhrasesAndConstants.SAY_LIEBLINGAFARBE_REPROMPT)
+                    .withSpeech(PhrasesAndConstants.SAY_LIEBLINGAFARBE_REPROMPT)
+                    .withReprompt(PhrasesAndConstants.REPROMPT_LIEBINGSFARBE)
+                    .withShouldEndSession(false);
         }
 
         return responseBuilder.build();

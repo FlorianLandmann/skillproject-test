@@ -19,8 +19,8 @@ import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
 
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 
 import java.util.Optional;
@@ -30,7 +30,7 @@ import static com.amazon.ask.request.Predicates.requestType;
 
 public class LaunchRequestHandler implements RequestHandler {
 
-    static final Logger logger = LogManager.getLogger(LaunchRequestHandler.class);
+    //static final Logger logger = LogManager.getLogger(LaunchRequestHandler.class);
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -40,8 +40,8 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        logger.info("LaunchRequestHandler\n");
-        logger.error("LaunchRequestHandler\n");
+        //logger.info("LaunchRequestHandler\n");
+        //logger.error("LaunchRequestHandler\n");
         return input.getResponseBuilder()
                 .withSimpleCard(PhrasesAndConstants.CARD_TITLE, PhrasesAndConstants.WELCOME)
                 .withSpeech(PhrasesAndConstants.WELCOME)

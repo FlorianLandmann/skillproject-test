@@ -16,35 +16,38 @@ package main.java.lieblingsfarbe.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.response.ResponseBuilder;
+import main.java.lieblingsfarbe.PhrasesAndConstants;
 
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class WhatsMyColorIntentHandler implements RequestHandler {
-    public static final String COLOR_KEY = "COLOR";
-    public static final String COLOR_SLOT = "Color";
+
 
     @Override
     public boolean canHandle(HandlerInput input) {
+
         return input.matches(intentName("WhatsMyColorIntent"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText;
-        String favoriteColor = (String) input.getAttributesManager().getSessionAttributes().get(COLOR_KEY);
+        String favoriteColor = (String) input.getAttributesManager().getSessionAttributes().get(PhrasesAndConstants.COLOR_KEY);
+
+        ResponseBuilder responseBuilder = input.getResponseBuilder();
 
         if (favoriteColor != null && !favoriteColor.isEmpty()) {
-            speechText = String.format("Deine Lieblingsfarbe ist %s. Auf Wiedersehen.", favoriteColor);
+            String speechText = String.format("%s %s. Auf Wiedersehen.", PhrasesAndConstants.LIEBLINGSFARBE_IS, favoriteColor, PhrasesAndConstants.GOOD_BYE);
+            responseBuilder.withSpeech(speechText)
+                    .withSimpleCard(PhrasesAndConstants.CARD_TITLE, speechText);
         } else {
             // Since the user's favorite color is not set render an error message.
-            speechText = "Ich weiss nicht welches Deine Lieblingsfarbe ist. Sag mir Deine Lieblingsfarbe. Sage zum Beispiel: ich mag rot.";
+            responseBuilder.withSpeech(PhrasesAndConstants.LIEBLINGSFABE_UNKNOWN)
+                    .withSimpleCard(PhrasesAndConstants.CARD_TITLE, PhrasesAndConstants.LIEBLINGSFABE_UNKNOWN)
+                    .withShouldEndSession(false);
         }
-
-        return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("ColorSession", speechText)
-                .build();
+        return responseBuilder.build();
     }
 }
