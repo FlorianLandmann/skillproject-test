@@ -46,10 +46,8 @@ public class MyColorIsIntentHandler implements RequestHandler {
 
         ResponseBuilder responseBuilder = input.getResponseBuilder();
 
-        // Check for favorite color and create output to user.
-        //System.out.println(favoriteColorSlot.toString());
         if (favoriteColorSlot.getValue() != null && favoriteColorSlot.getResolutions().toString().contains("ER_SUCCESS_MATCH")) {
-            // Store the user's favorite color in the Session and create response.
+            // Store the user's favorite color in the Session and store in DB then create response.
             String favoriteColor = favoriteColorSlot.getValue();
             input.getAttributesManager().setSessionAttributes(Collections.singletonMap(PhrasesAndConstants.COLOR_KEY, favoriteColor));
 

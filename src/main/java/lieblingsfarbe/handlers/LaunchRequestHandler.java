@@ -47,7 +47,7 @@ public class LaunchRequestHandler implements RequestHandler {
         AttributesManager attributesManager = input.getAttributesManager();
         Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
         String favoriteColor = (String) persistentAttributes.get(PhrasesAndConstants.COLOR_KEY);
-        //System.out.println(favoriteColor);
+        
         if(favoriteColor != null){
             //put stored color in session Attributes
             input.getAttributesManager().setSessionAttributes(Collections.singletonMap(PhrasesAndConstants.COLOR_KEY, favoriteColor));
