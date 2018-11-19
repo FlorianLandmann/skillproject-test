@@ -11,15 +11,15 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.lieblingsfarbe.handlers;
+package lieblingsfarbe.handlers;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.*;
 import com.amazon.ask.response.ResponseBuilder;
-import main.java.lieblingsfarbe.PhrasesAndConstants;
-import main.java.lieblingsfarbe.model.Lieblingsfarbe;
+import lieblingsfarbe.PhrasesAndConstants;
+import lieblingsfarbe.model.Lieblingsfarbe;
 
 import java.util.Collections;
 import java.util.Map;
@@ -27,7 +27,6 @@ import java.util.Optional;
 
 
 import static com.amazon.ask.request.Predicates.intentName;
-import static com.amazon.ask.request.Predicates.viewportProfile;
 
 public class MyColorIsIntentHandler implements RequestHandler {
     @Override
@@ -50,17 +49,17 @@ public class MyColorIsIntentHandler implements RequestHandler {
         if (favoriteColorSlot.getValue() != null && favoriteColorSlot.getResolutions().toString().contains("ER_SUCCESS_MATCH")) {
             // Store the user's favorite color in the Session and store in DB then create response.
             Lieblingsfarbe lieblingsfarbe = new Lieblingsfarbe(favoriteColorSlot.getValue());
-            input.getAttributesManager().setSessionAttributes(Collections.singletonMap(PhrasesAndConstants.COLOR_KEY, lieblingsfarbe.getLieblingsfarbe()));
+            input.getAttributesManager().setSessionAttributes(Collections.singletonMap(PhrasesAndConstants.COLOR_KEY, lieblingsfarbe.getFarbe()));
 
             //store persistent
             AttributesManager attributesManager = input.getAttributesManager();
             Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
-            persistentAttributes.put(PhrasesAndConstants.COLOR_KEY, lieblingsfarbe.getLieblingsfarbe());
+            persistentAttributes.put(PhrasesAndConstants.COLOR_KEY, lieblingsfarbe.getFarbe());
             attributesManager.setPersistentAttributes(persistentAttributes);
             attributesManager.savePersistentAttributes();
 
             String speechText =
-                    String.format("%s %s. %s", PhrasesAndConstants.LIEBLINGSFARBE_IS, lieblingsfarbe.getLieblingsfarbe(), PhrasesAndConstants.WHAT_IS_LIEBLINGSFARBE);
+                    String.format("%s %s. %s", PhrasesAndConstants.LIEBLINGSFARBE_IS, lieblingsfarbe.getFarbe(), PhrasesAndConstants.WHAT_IS_LIEBLINGSFARBE);
             responseBuilder.withSimpleCard(PhrasesAndConstants.CARD_TITLE, speechText)
                     .withSpeech(speechText)
                     .withShouldEndSession(false);

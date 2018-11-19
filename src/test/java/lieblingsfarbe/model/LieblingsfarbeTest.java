@@ -9,7 +9,6 @@ import com.openpojo.validation.rule.impl.SetterMustExistRule;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
 
-import main.java.lieblingsfarbe.model.Lieblingsfarbe;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

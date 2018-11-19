@@ -1,23 +1,23 @@
-package main.java.lieblingsfarbe.model;
+package lieblingsfarbe.model;
 
 public class Lieblingsfarbe {
 
-    private String lieblingsfarbe;
+    private String farbe;
 
     public Lieblingsfarbe(String lieblingsfarbe){
-        setLieblingsfarbe(lieblingsfarbe);
+        setFarbe(lieblingsfarbe);
     }
 
-    public String getLieblingsfarbe() {
-        return lieblingsfarbe;
+    public String getFarbe() {
+        return farbe;
     }
 
-    public void setLieblingsfarbe(String lieblingsfarbe) {
-        this.lieblingsfarbe = lieblingsfarbe;
+    public void setFarbe(String farbe) {
+        this.farbe = farbe;
     }
 
     public boolean isValid(){
-        return (this.lieblingsfarbe != null && !this.lieblingsfarbe.isEmpty());
+        return (this.farbe != null && !this.farbe.isEmpty());
     }
 
 }

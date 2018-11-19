@@ -11,14 +11,14 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.lieblingsfarbe.handlers;
+package lieblingsfarbe.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.response.ResponseBuilder;
-import main.java.lieblingsfarbe.PhrasesAndConstants;
-import main.java.lieblingsfarbe.model.Lieblingsfarbe;
+import lieblingsfarbe.PhrasesAndConstants;
+import lieblingsfarbe.model.Lieblingsfarbe;
 
 import java.util.Optional;
 
@@ -40,7 +40,7 @@ public class WhatsMyColorIntentHandler implements RequestHandler {
         ResponseBuilder responseBuilder = input.getResponseBuilder();
 
         if (lieblingsfarbe.isValid()) {
-            String speechText = String.format("%s %s. %s.", PhrasesAndConstants.LIEBLINGSFARBE_IS, lieblingsfarbe.getLieblingsfarbe(), PhrasesAndConstants.GOOD_BYE);
+            String speechText = String.format("%s %s. %s.", PhrasesAndConstants.LIEBLINGSFARBE_IS, lieblingsfarbe.getFarbe(), PhrasesAndConstants.GOOD_BYE);
             responseBuilder.withSpeech(speechText)
                     .withSimpleCard(PhrasesAndConstants.CARD_TITLE, speechText);
         } else {

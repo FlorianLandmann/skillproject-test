@@ -1,4 +1,4 @@
-package main.java.lieblingsfarbe;
+package lieblingsfarbe;
 
 public class PhrasesAndConstants {
 

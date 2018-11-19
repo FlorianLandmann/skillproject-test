@@ -11,7 +11,7 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.lieblingsfarbe.handlers;
+package lieblingsfarbe.handlers;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -25,8 +25,8 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.amazon.ask.response.ResponseBuilder;
-import main.java.lieblingsfarbe.PhrasesAndConstants;
-import main.java.lieblingsfarbe.model.Lieblingsfarbe;
+import lieblingsfarbe.PhrasesAndConstants;
+import lieblingsfarbe.model.Lieblingsfarbe;
 
 import static com.amazon.ask.request.Predicates.requestType;
 
@@ -53,9 +53,9 @@ public class LaunchRequestHandler implements RequestHandler {
             //put stored color in session Attributes
             Lieblingsfarbe lieblingsfarbe = new Lieblingsfarbe(favoriteColor);
             input.getAttributesManager().setSessionAttributes(Collections.singletonMap(PhrasesAndConstants.COLOR_KEY,
-                    lieblingsfarbe.getLieblingsfarbe()));
+                    lieblingsfarbe.getFarbe()));
             String speechText =
-                    String.format("%s %s. %s", PhrasesAndConstants.LIEBLINGSFARBE_IS, lieblingsfarbe.getLieblingsfarbe(),
+                    String.format("%s %s. %s", PhrasesAndConstants.LIEBLINGSFARBE_IS, lieblingsfarbe.getFarbe(),
                             PhrasesAndConstants.CHANGE_LIEBLINGSFARBE);
             responseBuilder.withSimpleCard(PhrasesAndConstants.CARD_TITLE, speechText)
                     .withSpeech(speechText)
