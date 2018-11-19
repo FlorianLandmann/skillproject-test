@@ -18,6 +18,7 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.response.ResponseBuilder;
 import main.java.lieblingsfarbe.PhrasesAndConstants;
+import main.java.lieblingsfarbe.model.Lieblingsfarbe;
 
 import java.util.Optional;
 
@@ -34,12 +35,12 @@ public class WhatsMyColorIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String favoriteColor = (String) input.getAttributesManager().getSessionAttributes().get(PhrasesAndConstants.COLOR_KEY);
+        Lieblingsfarbe lieblingsfarbe = new Lieblingsfarbe((String) input.getAttributesManager().getSessionAttributes().get(PhrasesAndConstants.COLOR_KEY));
 
         ResponseBuilder responseBuilder = input.getResponseBuilder();
 
-        if (favoriteColor != null && !favoriteColor.isEmpty()) {
-            String speechText = String.format("%s %s. %s.", PhrasesAndConstants.LIEBLINGSFARBE_IS, favoriteColor, PhrasesAndConstants.GOOD_BYE);
+        if (lieblingsfarbe.isValid()) {
+            String speechText = String.format("%s %s. %s.", PhrasesAndConstants.LIEBLINGSFARBE_IS, lieblingsfarbe.getLieblingsfarbe(), PhrasesAndConstants.GOOD_BYE);
             responseBuilder.withSpeech(speechText)
                     .withSimpleCard(PhrasesAndConstants.CARD_TITLE, speechText);
         } else {
