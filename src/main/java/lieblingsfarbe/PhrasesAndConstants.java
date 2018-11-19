@@ -23,7 +23,7 @@ public class PhrasesAndConstants {
     public static final String REPROMPT_LIEBINGSFARBE ="Welche Farbe magst Du am liebsten?";
 
 
-    public static final String CHANGE_LIEBLINGSFARBE = "Du kannst Deine Lieblingsfarbe <phoneme alphabet=\"x-sampa\" ph=\"eIndern\">aendern</phoneme>. Sage mir einfach deine neue Lieblingsfarbe.";
+    public static final String CHANGE_LIEBLINGSFARBE = "Du kannst Deine Lieblingsfarbe <phoneme alphabet=\"x-sampa\" ph=\"{ndern\">aendern</phoneme>. Sage mir einfach deine neue Lieblingsfarbe.";
     public static final String GOOD_BYE ="Auf Wiedersehen";
 
 
