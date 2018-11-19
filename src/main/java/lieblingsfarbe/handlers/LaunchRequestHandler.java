@@ -26,6 +26,7 @@ import java.util.Optional;
 
 import com.amazon.ask.response.ResponseBuilder;
 import main.java.lieblingsfarbe.PhrasesAndConstants;
+import main.java.lieblingsfarbe.model.Lieblingsfarbe;
 
 import static com.amazon.ask.request.Predicates.requestType;
 
@@ -47,12 +48,15 @@ public class LaunchRequestHandler implements RequestHandler {
         AttributesManager attributesManager = input.getAttributesManager();
         Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
         String favoriteColor = (String) persistentAttributes.get(PhrasesAndConstants.COLOR_KEY);
-        
+
         if(favoriteColor != null){
             //put stored color in session Attributes
-            input.getAttributesManager().setSessionAttributes(Collections.singletonMap(PhrasesAndConstants.COLOR_KEY, favoriteColor));
+            Lieblingsfarbe lieblingsfarbe = new Lieblingsfarbe(favoriteColor);
+            input.getAttributesManager().setSessionAttributes(Collections.singletonMap(PhrasesAndConstants.COLOR_KEY,
+                    lieblingsfarbe.getLieblingsfarbe()));
             String speechText =
-                    String.format("%s %s. %s", PhrasesAndConstants.LIEBLINGSFARBE_IS, favoriteColor, PhrasesAndConstants.CHANGE_LIEBLINGSFARBE);
+                    String.format("%s %s. %s", PhrasesAndConstants.LIEBLINGSFARBE_IS, lieblingsfarbe.getLieblingsfarbe(),
+                            PhrasesAndConstants.CHANGE_LIEBLINGSFARBE);
             responseBuilder.withSimpleCard(PhrasesAndConstants.CARD_TITLE, speechText)
                     .withSpeech(speechText)
                     .withReprompt(PhrasesAndConstants.HELP_REPROMPT);
