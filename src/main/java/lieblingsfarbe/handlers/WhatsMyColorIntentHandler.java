@@ -39,7 +39,7 @@ public class WhatsMyColorIntentHandler implements RequestHandler {
         ResponseBuilder responseBuilder = input.getResponseBuilder();
 
         if (favoriteColor != null && !favoriteColor.isEmpty()) {
-            String speechText = String.format("%s %s. Auf Wiedersehen.", PhrasesAndConstants.LIEBLINGSFARBE_IS, favoriteColor, PhrasesAndConstants.GOOD_BYE);
+            String speechText = String.format("%s %s. %s.", PhrasesAndConstants.LIEBLINGSFARBE_IS, favoriteColor, PhrasesAndConstants.GOOD_BYE);
             responseBuilder.withSpeech(speechText)
                     .withSimpleCard(PhrasesAndConstants.CARD_TITLE, speechText);
         } else {

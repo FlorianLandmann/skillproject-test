@@ -47,7 +47,6 @@ public class MyColorIsIntentHandler implements RequestHandler {
         ResponseBuilder responseBuilder = input.getResponseBuilder();
 
         // Check for favorite color and create output to user.
-        //if (favoriteColorSlot != null) {
         //System.out.println(favoriteColorSlot.toString());
         if (favoriteColorSlot.getValue() != null && favoriteColorSlot.getResolutions().toString().contains("ER_SUCCESS_MATCH")) {
             // Store the user's favorite color in the Session and create response.
@@ -60,8 +59,6 @@ public class MyColorIsIntentHandler implements RequestHandler {
             persistentAttributes.put(PhrasesAndConstants.COLOR_KEY, favoriteColor);
             attributesManager.setPersistentAttributes(persistentAttributes);
             attributesManager.savePersistentAttributes();
-            System.out.println(favoriteColor);
-            System.out.println(" store persistent ");
 
             String speechText =
                     String.format("%s %s. %s", PhrasesAndConstants.LIEBLINGSFARBE_IS, favoriteColor, PhrasesAndConstants.WHAT_IS_LIEBLINGSFARBE);

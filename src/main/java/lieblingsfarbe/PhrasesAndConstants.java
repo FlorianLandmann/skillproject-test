@@ -1,7 +1,5 @@
 package main.java.lieblingsfarbe;
 
-import java.nio.charset.StandardCharsets;
-
 public class PhrasesAndConstants {
 
     private PhrasesAndConstants() {
