@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>sweIhm_ws2018_19</groupId>
-    <artifactId>farbe</artifactId>
+    <artifactId>lieblingsfarbe</artifactId>
     <packaging>jar</packaging>
     <version>1.0</version>
-    <name>farbe</name>
+    <name>lieblingsfarbe</name>
     <url>https://github.com/sweIhm-ws2018-19/skillproject-test</url>
 
     <properties>
