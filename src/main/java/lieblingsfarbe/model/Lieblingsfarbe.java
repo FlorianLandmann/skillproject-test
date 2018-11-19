@@ -4,8 +4,8 @@ public class Lieblingsfarbe {
 
     private String farbe;
 
-    public Lieblingsfarbe(String lieblingsfarbe){
-        setFarbe(lieblingsfarbe);
+    public Lieblingsfarbe(String farbe){
+        setFarbe(farbe);
     }
 
     public String getFarbe() {
