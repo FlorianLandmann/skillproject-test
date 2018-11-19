@@ -13,6 +13,7 @@
 
 package main.java.lieblingsfarbe.handlers;
 
+import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.*;
@@ -45,8 +46,6 @@ public class MyColorIsIntentHandler implements RequestHandler {
 
         ResponseBuilder responseBuilder = input.getResponseBuilder();
 
-        String speechText;
-
         // Check for favorite color and create output to user.
         //if (favoriteColorSlot != null) {
         //System.out.println(favoriteColorSlot.toString());
@@ -55,7 +54,16 @@ public class MyColorIsIntentHandler implements RequestHandler {
             String favoriteColor = favoriteColorSlot.getValue();
             input.getAttributesManager().setSessionAttributes(Collections.singletonMap(PhrasesAndConstants.COLOR_KEY, favoriteColor));
 
-            speechText =
+            //store persistent
+            AttributesManager attributesManager = input.getAttributesManager();
+            Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
+            persistentAttributes.put(PhrasesAndConstants.COLOR_KEY, favoriteColor);
+            attributesManager.setPersistentAttributes(persistentAttributes);
+            attributesManager.savePersistentAttributes();
+            System.out.println(favoriteColor);
+            System.out.println(" store persistent ");
+
+            String speechText =
                     String.format("%s %s. %s", PhrasesAndConstants.LIEBLINGSFARBE_IS, favoriteColor, PhrasesAndConstants.WHAT_IS_LIEBLINGSFARBE);
             responseBuilder.withSimpleCard(PhrasesAndConstants.CARD_TITLE, speechText)
                     .withSpeech(speechText)
