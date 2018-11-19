@@ -13,24 +13,24 @@
 
 package main.java.lieblingsfarbe.handlers;
 
+import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
 
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
-
-
+import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
+
+import com.amazon.ask.response.ResponseBuilder;
 import main.java.lieblingsfarbe.PhrasesAndConstants;
 
 import static com.amazon.ask.request.Predicates.requestType;
 
 public class LaunchRequestHandler implements RequestHandler {
 
-    //static final Logger logger = LogManager.getLogger(LaunchRequestHandler.class);
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -40,12 +40,28 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        //logger.info("LaunchRequestHandler\n");
-        //logger.error("LaunchRequestHandler\n");
-        return input.getResponseBuilder()
-                .withSimpleCard(PhrasesAndConstants.CARD_TITLE, PhrasesAndConstants.WELCOME)
-                .withSpeech(PhrasesAndConstants.WELCOME)
-                .withReprompt(PhrasesAndConstants.WELCOME_REPROMT)
-                .build();
+
+        ResponseBuilder responseBuilder = input.getResponseBuilder();
+
+        //see if color is stored already
+        AttributesManager attributesManager = input.getAttributesManager();
+        Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
+        String favoriteColor = (String) persistentAttributes.get(PhrasesAndConstants.COLOR_KEY);
+        System.out.println(favoriteColor);
+        if(favoriteColor != null){
+            //put stored color in session Attributes
+            input.getAttributesManager().setSessionAttributes(Collections.singletonMap(PhrasesAndConstants.COLOR_KEY, favoriteColor));
+            String speechText =
+                    String.format("%s %s. %s", PhrasesAndConstants.LIEBLINGSFARBE_IS, favoriteColor, PhrasesAndConstants.CHANGE_LIEBLINGSFARBE);
+            responseBuilder.withSimpleCard(PhrasesAndConstants.CARD_TITLE, speechText)
+                    .withSpeech(speechText)
+                    .withReprompt(PhrasesAndConstants.HELP_REPROMPT);
+        } else {
+            responseBuilder.withSimpleCard(PhrasesAndConstants.CARD_TITLE, PhrasesAndConstants.WELCOME)
+                    .withSpeech(PhrasesAndConstants.WELCOME)
+                    .withReprompt(PhrasesAndConstants.HELP_REPROMPT);
+        }
+
+        return responseBuilder.build();
     }
 }

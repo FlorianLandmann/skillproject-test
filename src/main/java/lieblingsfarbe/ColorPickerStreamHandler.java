@@ -36,6 +36,8 @@ public class ColorPickerStreamHandler extends SkillStreamHandler {
                         new SessionEndedRequestHandler(),
                         new HelpIntentHandler(),
                         new FallbackIntentHandler())
+                .withTableName("lieblingsfarbeData")
+                .withAutoCreateTable(true)
                 // Add your skill id below
                 //.withSkillId("")
                 .build();
