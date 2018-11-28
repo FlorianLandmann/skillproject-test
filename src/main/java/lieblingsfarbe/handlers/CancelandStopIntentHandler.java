@@ -33,6 +33,7 @@ public class CancelandStopIntentHandler implements RequestHandler {
         return input.getResponseBuilder()
                 .withSpeech(PhrasesAndConstants.CANCEL_AND_STOP)
                 .withSimpleCard(PhrasesAndConstants.CARD_TITLE, PhrasesAndConstants.CANCEL_AND_STOP)
+                .withShouldEndSession(true)
                 .build();
     }
 }
