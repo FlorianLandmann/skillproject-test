@@ -5,7 +5,6 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.*;
 import com.amazon.ask.response.ResponseBuilder;
-import com.amazonaws.services.dynamodbv2.xspec.S;
 import lieblingsfarbe.PhrasesAndConstants;
 import org.mockito.Mockito;
 

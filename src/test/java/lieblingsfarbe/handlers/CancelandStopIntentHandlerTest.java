@@ -3,12 +3,11 @@ package lieblingsfarbe.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 import lieblingsfarbe.PhrasesAndConstants;
+import static com.amazon.ask.request.Predicates.intentName;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.Assert.assertNotNull;
@@ -24,11 +23,13 @@ public class CancelandStopIntentHandlerTest {
     public void setup() {
         handler = new CancelandStopIntentHandler();
     }
-
+//return input.matches(intentName("AMAZON.StopIntent").or(intentName("AMAZON.CancelIntent")));
     @Test
     public void testCanHandle() {
         final HandlerInput inputMock = Mockito.mock(HandlerInput.class);
         when(inputMock.matches(any())).thenReturn(true);
+        //when(inputMock.matches(intentName("AMAZON.CancelIntent"))).thenReturn(true);
+        //when(inputMock.matches(intentName("AMAZON.StopIntent"))).thenReturn(true);
         assertTrue(handler.canHandle(inputMock));
     }
 
