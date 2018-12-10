@@ -1,5 +1,8 @@
 ﻿# Alexa Skills Kit SDK Sample - Color Picker - Lieblingsfarbe 
 (deutsche Übersetzung)
+
+on github pages: [https://sweihm-ws2018-19.github.io/skillproject-test/]( https://sweihm-ws2018-19.github.io/skillproject-test/)
+
 A simple [AWS Lambda](http://aws.amazon.com/lambda) function that demonstrates how to write a color picker skill for the Amazon Echo using the Alexa SDK.
 
 ## Concepts
