@@ -9,10 +9,10 @@ Ein Beispiel Skill basierend auf [Github: https://github.com/alexa/alexa-skills-
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=sweIhm_ws2018_19:lieblingsfarbe&metric=alert_status)](https://sonarcloud.io/dashboard?id=sweIhm_ws2018_19:lieblingsfarbe)
 
 
-Der Skill wurde auf Deutsch übersetzt, es wurden Tests hinzugefügt und eine eigene Model-Klasse implementiert. 
+Der Skill wurde auf Deutsch Ã¼bersetzt, es wurden Tests hinzugefÃ¼gt und eine eigene Model-Klasse implementiert. 
 
 
-Beta Test für Lieblingsfarbe: ... hier Link zur Betatestseite 
+Beta Test fÃ¼r Lieblingsfarbe: ... hier Link zur Betatestseite 
 
 ## Systemarchitektur
 <img src="images/SystemkontextAlexaSkill.png" alt="Systemkontext" class="inline"/>
@@ -23,8 +23,8 @@ Beta Test für Lieblingsfarbe: ... hier Link zur Betatestseite
 ## Klassendiagramm des AWS Lambda Funktion
 <img src="images/LieblingsfarbeSkillKlassenmodell.png" alt="Klassenmodell" class="inline"/>
 
-## Aktivitätsdiagramm Lieblingsfarbe eingeben
-<img src="images/AlexaSkill_Aktivitätsdiagramm.png" alt="Lieblingsfarbe eingeben" class="inline"/>
+## AktivitÃ¤tsdiagramm Lieblingsfarbe eingeben
+<img src="images/AlexaSkill_AktivitÃ¤tsdiagramm.png" alt="Lieblingsfarbe eingeben" class="inline"/>
 
 ## Sonstiges
 Was ich gelernt habe: viel!
