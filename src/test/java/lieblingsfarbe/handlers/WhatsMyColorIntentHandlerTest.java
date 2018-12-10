@@ -31,4 +31,24 @@ public class WhatsMyColorIntentHandlerTest {
         final Response response = TestUtil.standardTestForHandle(handler);
         assertTrue(response.getOutputSpeech().toString().contains(PhrasesAndConstants.CARD_TITLE));
     }
+
+    @Test
+    public void testHandleColorFromSessionAttributes() {
+        final Response response = TestUtil.sessionAttributesTestForHandle(handler);
+        assertTrue(response.getOutputSpeech().toString().contains(PhrasesAndConstants.CARD_TITLE));
+        assertTrue(response.getOutputSpeech().toString().contains("rot"));
+    }
+
+    @Test
+    public void testHandleColorFromPersistentAttributes() {
+        final Response response = TestUtil.persistentAttributesTestForHandle(handler);
+        assertTrue(response.getOutputSpeech().toString().contains(PhrasesAndConstants.CARD_TITLE));
+        assertTrue(response.getOutputSpeech().toString().contains("blau"));
+    }
+
+    @Test
+    public void testHandleNoColor() {
+        final Response response = TestUtil.noAttributesTestForHandle(handler);
+        assertTrue(response.getOutputSpeech().toString().contains(PhrasesAndConstants.CARD_TITLE));
+    }
 }

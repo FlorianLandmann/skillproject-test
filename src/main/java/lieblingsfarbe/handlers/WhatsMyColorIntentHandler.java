@@ -13,6 +13,7 @@
 
 package lieblingsfarbe.handlers;
 
+import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
@@ -20,6 +21,7 @@ import com.amazon.ask.response.ResponseBuilder;
 import lieblingsfarbe.PhrasesAndConstants;
 import lieblingsfarbe.model.Lieblingsfarbe;
 
+import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -35,11 +37,33 @@ public class WhatsMyColorIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        Lieblingsfarbe lieblingsfarbe = new Lieblingsfarbe((String) input.getAttributesManager().getSessionAttributes().get(PhrasesAndConstants.COLOR_KEY));
 
+        Lieblingsfarbe lieblingsfarbe = new Lieblingsfarbe(null);
         ResponseBuilder responseBuilder = input.getResponseBuilder();
+        //see if session attributes or persistent attributes store a color
+
+        AttributesManager attributesManager = input.getAttributesManager();
+        Map<String, Object> sessionAttributes = attributesManager.getSessionAttributes();
+        if (sessionAttributes != null) {
+            String favoriteColor = (String) sessionAttributes.get(PhrasesAndConstants.COLOR_KEY);
+            if (favoriteColor != null) {
+                lieblingsfarbe.setFarbe(favoriteColor);
+            }
+        }
+        if (!lieblingsfarbe.isValid()) {
+            //color not found yet. Check persistent attributes
+            Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
+            if (persistentAttributes != null) {
+                String favoriteColor = (String) persistentAttributes.get(PhrasesAndConstants.COLOR_KEY);
+                if (favoriteColor != null) {
+                    lieblingsfarbe.setFarbe(favoriteColor);
+                }
+            }
+        }
+
 
         if (lieblingsfarbe.isValid()) {
+            // color either in session attributres or in persisten attributes
             String speechText = String.format("%s %s. %s.", PhrasesAndConstants.LIEBLINGSFARBE_IS, lieblingsfarbe.getFarbe(), PhrasesAndConstants.GOOD_BYE);
             responseBuilder.withSpeech(speechText)
                     .withSimpleCard(PhrasesAndConstants.CARD_TITLE, speechText);

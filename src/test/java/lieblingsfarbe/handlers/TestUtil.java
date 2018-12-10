@@ -64,6 +64,46 @@ public class TestUtil {
         assertNotNull(response.getOutputSpeech());
         return response;
     }
+    public static Response sessionAttributesTestForHandle(RequestHandler handler) {
+        final Map<String, Object> sessionAttributes = new HashMap<>();
+        sessionAttributes.put(PhrasesAndConstants.COLOR_KEY, "rot");
+        final HandlerInput inputMock = TestUtil.mockHandlerInput(null, sessionAttributes, null, null);
+        final Optional<Response> res = handler.handle(inputMock);
+
+        assertTrue(res.isPresent());
+        final Response response = res.get();
+
+        //in the WhatsMyColorIntentHandler
+        //assertTrue(response.getShouldEndSession());
+        assertNotNull(response.getOutputSpeech());
+        return response;
+    }
+    public static Response persistentAttributesTestForHandle(RequestHandler handler) {
+        final Map<String, Object> persistentAttributes = new HashMap<>();
+        persistentAttributes.put(PhrasesAndConstants.COLOR_KEY, "blau");
+        final HandlerInput inputMock = TestUtil.mockHandlerInput(null, null, persistentAttributes, null);
+        final Optional<Response> res = handler.handle(inputMock);
+
+        assertTrue(res.isPresent());
+        final Response response = res.get();
+
+        //in the WhatsMyColorIntentHandler
+        //assertTrue(response.getShouldEndSession());
+        assertNotNull(response.getOutputSpeech());
+        return response;
+    }
+
+    public static Response noAttributesTestForHandle(RequestHandler handler) {
+        final HandlerInput inputMock = TestUtil.mockHandlerInput(null, null, null, null);
+        final Optional<Response> res = handler.handle(inputMock);
+
+        assertTrue(res.isPresent());
+        final Response response = res.get();
+
+        assertFalse(response.getShouldEndSession());
+        assertNotNull(response.getOutputSpeech());
+        return response;
+    }
     public static Response sessionEndedTestForHandle(RequestHandler handler) {
         final HandlerInput inputMock = TestUtil.mockHandlerInput(null, null, null, null);
         final Optional<Response> res = handler.handle(inputMock);
