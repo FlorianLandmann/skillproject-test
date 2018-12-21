@@ -4,7 +4,7 @@
 Ein Beispiel Skill basierend auf [Github: https://github.com/alexa/alexa-skills-kit-sdk-for-java/tree/2.0.x/samples/colorpicker](https://github.com/alexa/alexa-skills-kit-sdk-for-java/tree/2.0.x/samples/colorpicker)
 
 ## Status
-[![Travis-CI Status](https://travis-ci.org/sweIhm-ws2018-19/skillproject-test)](https://travis-ci.org/sweIhm-ws2018-19/skillproject-test.svg?branch=master)
+[![Travis-CI Status](https://travis-ci.org/sweIhm-ws2018-19/skillproject-test.svg?branch=master)](https://travis-ci.org/sweIhm-ws2018-19/skillproject-test)
 
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=sweIhm_ws2018_19:lieblingsfarbe&metric=alert_status)](https://sonarcloud.io/dashboard?id=sweIhm_ws2018_19:lieblingsfarbe)
 
